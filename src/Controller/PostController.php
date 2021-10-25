@@ -136,4 +136,30 @@ class PostController extends AbstractController
 
         // return $this->redirectToRoute('post.index');
     } 
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(Request $request, int $id, PostRepository $postRepository): Response 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $postRepository
+            ->find($id);
+
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        // Get entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Tell doctrine u want to save the Post
+        $em->remove($post);
+
+        // Acutally executes the queries (i.e the INSERT query)
+        $em->flush();
+
+        // Return to the read page after updating the form
+        return $this->redirectToRoute('post.index');
+        
+    } 
 }
