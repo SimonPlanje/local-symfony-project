@@ -4,6 +4,13 @@
 {% block body %}
     <h1>Add a new post to the list</h1>
 
-{{ form(form) }}
+{{ form_start(form) }}
+
+{{ form_row(form.title) }}
+{{ form_row(form.description) }}
+<button type="submit"> Submit </button>
+
+{{ form_end(form) }}
+
 
 {% endblock %}
