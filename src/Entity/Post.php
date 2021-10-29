@@ -32,6 +32,12 @@ class Post
      */
     private $visible;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Post
     public function setVisible(bool $visible): self
     {
         $this->visible = $visible;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

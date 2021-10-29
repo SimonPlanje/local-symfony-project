@@ -15,7 +15,7 @@ class AuthorType extends AbstractType
             ->add('name')
             ->add('surname')
             ->add('description')
-            ->add('Photo')
+            ->add('photo')
         ;
     }
 
