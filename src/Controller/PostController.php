@@ -136,12 +136,15 @@ class PostController extends AbstractController
 
         // return $this->redirectToRoute('post.index');
     } 
-    #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Request $request, int $id, PostRepository $postRepository): Response 
+    #[Route('/delete/{id}', name: 'delete', methods: 'POST')]
+    public function deleteAction(Request $request, int $id, PostRepository $postRepository): Response 
     {
         $em = $this->getDoctrine()->getManager();
         $post = $postRepository
             ->find($id);
+
+        $form = $this->createForm(ArticleFormType::class, $post);
+        $form->handleRequest($request);
 
         if (!$post) {
             throw $this->createNotFoundException(
@@ -160,6 +163,5 @@ class PostController extends AbstractController
 
         // Return to the read page after updating the form
         return $this->redirectToRoute('post.index');
-        
     } 
 }

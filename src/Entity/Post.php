@@ -27,6 +27,11 @@ class Post
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $visible;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Post
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getVisible(): ?bool
+    {
+        return $this->visible;
+    }
+
+    public function setVisible(bool $visible): self
+    {
+        $this->visible = $visible;
 
         return $this;
     }

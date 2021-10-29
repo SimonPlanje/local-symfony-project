@@ -7,6 +7,14 @@
     {% for post in posts %}
         <li>{{ post.id ~ ' - ' ~ post.title }}</li>
         <p>{{ post.description }}</p>
+        
+        <form method="POST" action="{{path("post.delete", {id: post.id})}}">
+        <button type="submit">Verwijderen</button>
+        </form>
+        <i title="Verwijderen">Verwijderen</i>
+        {# <a href="/post/update/{{post.id}}" title="Edit">Edit</a> #}
+        <a href="{{path("post.update", {id: post.id})}}" title="Edit">Edit</a>
+        
     {% endfor %}
     </ul>
 </div>
