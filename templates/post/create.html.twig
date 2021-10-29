@@ -4,14 +4,7 @@
 {% block body %}
     <h1>Add a new post to the list</h1>
 
-{{ form_start(form) }}
-
-{{ form_row(form.title) }}
-{{ form_row(form.description) }}
-{{ form_row(form.visible) }}
-<button type="submit"> Submit </button>
-
-{{ form_end(form) }}
-
+    {# Include the form #}
+    {{ include('post/_form.html.twig', {'button_label': 'Maak post'}) }}
 
 {% endblock %}
