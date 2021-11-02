@@ -49,6 +49,11 @@ class Author
         $this->posts = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name . ' ' . $this->surname;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

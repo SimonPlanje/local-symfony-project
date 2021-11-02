@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/post', name: 'post.')]
+#[Route('/post', name: 'post_')]
 
 class PostController extends AbstractController
 {
@@ -48,7 +48,7 @@ class PostController extends AbstractController
             // Acutally executes the queries (i.e the INSERT query)
             $em->flush();
 
-            return $this->redirectToRoute('post.index');
+            return $this->redirectToRoute('post_index');
             }
 
 
@@ -122,7 +122,7 @@ class PostController extends AbstractController
             $em->flush();
 
             // Return to the read page after updating the form
-            return $this->redirectToRoute('post.index');
+            return $this->redirectToRoute('post_index');
         }
 
         // Render the form so you can edit it
@@ -134,7 +134,7 @@ class PostController extends AbstractController
         // $post->setTitle('New product name!');
         // $em->flush();
 
-        // return $this->redirectToRoute('post.index');
+        // return $this->redirectToRoute('post_index');
     } 
     #[Route('/delete/{id}', name: 'delete', methods: 'POST')]
     public function deleteAction(Request $request, int $id, PostRepository $postRepository): Response 
@@ -162,6 +162,6 @@ class PostController extends AbstractController
         $em->flush();
 
         // Return to the read page after updating the form
-        return $this->redirectToRoute('post.index');
+        return $this->redirectToRoute('post_index');
     } 
 }

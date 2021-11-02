@@ -5,4 +5,5 @@
 {% block body %}
 <h1>{{ post.title }}</h1>
 <p>{{ post.description }}</p>
+<p><a href="{{ path('author_show', {'id': post.author.id}) }}">{{ post.author }}</a></p>
 {% endblock %}

@@ -13,6 +13,7 @@
                 <th>Surname</th>
                 <th>Description</th>
                 <th>Photo</th>
+                <th>Posts</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ author.surname }}</td>
                 <td>{{ author.description }}</td>
                 <td>{{ author.photo }}</td>
+                <td>{{ author.posts|length }}</td>
                 <td>
                     <a href="{{ path('author_show', {'id': author.id}) }}">show</a>
                     <a href="{{ path('author_edit', {'id': author.id}) }}">edit</a>
