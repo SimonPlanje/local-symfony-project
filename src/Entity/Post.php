@@ -41,7 +41,7 @@ class Post
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="posts")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="posts")
      */
     private $tags;
 

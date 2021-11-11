@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Author;
+use App\Entity\Post;
+use App\Entity\Tag;
 use PhpParser\Parser\Multiple;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,6 +34,15 @@ class ArticleFormType extends AbstractType
                 // Reder a dropdown
                 // 'multiple' => 'false',
                 // 'expanded' => 'false',
+            ])
+            ->add('tags', EntityType::class, [
+                'class' => Tag::class,
+
+                // Set option to select multiple options
+                'multiple' => 'true',
+                'expanded' => 'true',
+
+
             ])
             ->add('visible', CheckboxType::class, [
                 'label'    => 'Laat deze post zien:',

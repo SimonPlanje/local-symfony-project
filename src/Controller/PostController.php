@@ -44,12 +44,18 @@ class PostController extends AbstractController
             
             // Tell doctrine u want to save the Post
             $em->persist($post);
+            // foreach($post->getTags() as $tag){
+            //     $em->persist($tag);
+            // }
+            
+            // dump($post->getTags());
+            // die();
 
             // Acutally executes the queries (i.e the INSERT query)
             $em->flush();
 
             return $this->redirectToRoute('post_index');
-            }
+        }
 
 
 
@@ -60,7 +66,7 @@ class PostController extends AbstractController
 
         // Automatic 
 
-        // // Create a new poset with title
+        // // Create a new post with title
         // $post = new Post();
         // $post->setTitle('This is going to be a title');
         // $post->setDescription('This is the first description');

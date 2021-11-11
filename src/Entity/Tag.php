@@ -25,13 +25,18 @@ class Tag
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Post::class, inversedBy="tags")
+     * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="tags")
      */
     private $posts;
 
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     public function getId(): ?int
