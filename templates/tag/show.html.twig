@@ -15,16 +15,15 @@
                 <th>Title</th>
                 <td>{{ tag.title }}</td>
             </tr>
-            <tr>
-                <th>Related articles</th>
-                {% for post in tag.posts %}
-                <td>
-                <a href="{{ path('post_show', {'id': post.id}) }}">{{ post }}</a>
-                </td>
-                {% endfor %}
-            </tr>
         </tbody>
     </table>
+
+    <h3>Related articles</h3>
+    <ul>
+        {% for post in tag.posts %}
+            <li><a href="{{ path('post_show', {'id': post.id}) }}">{{ post }}</a></li>
+        {% endfor %}
+    </ul>
 
     <a href="{{ path('tag_index') }}">back to list</a>
 
