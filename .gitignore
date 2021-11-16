@@ -19,7 +19,7 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
-.env.test
-.env
+/.env.test
+/.env
 /composer.json
 /package.json
