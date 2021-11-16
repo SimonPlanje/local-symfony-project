@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -32,7 +33,7 @@ class Post
     /**
      * @ORM\Column(type="boolean")
      */
-    private $visible;
+    private $visible = true;
 
     /**
      * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="posts")
@@ -45,9 +46,16 @@ class Post
      */
     private $tags;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+
+    private $date;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->date = new DateTime();
     }
 
     public function __toString()
@@ -131,6 +139,18 @@ class Post
         if ($this->tags->removeElement($tag)) {
             $tag->removePost($this);
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

@@ -13,8 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class ArticleFormType extends AbstractType
+class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -37,17 +38,17 @@ class ArticleFormType extends AbstractType
             ])
             ->add('tags', EntityType::class, [
                 'class' => Tag::class,
-
+                
                 // Set option to select multiple options
                 'multiple' => 'true',
                 'expanded' => 'true',
-
-
             ])
             ->add('visible', CheckboxType::class, [
                 'label'    => 'Laat deze post zien:',
                 'required' => false,
-            ]);
+            ])
+            ->add('date', DateType::class)
+            ;
     }
 
 }

@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Post;
-use App\Form\ArticleFormType;
+use App\Form\PostType;
 use App\Repository\PostRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/post', name: 'post_')]
 
@@ -17,7 +17,9 @@ class PostController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(PostRepository $postRepository): Response
     {
-        $posts = $postRepository->findBy([], ['id'=>'desc'], 5);
+        //$posts = $postRepository->findBy([], ['date'=>'desc'], 5);
+
+        $posts = $postRepository->getIndexPosts();
 
         return $this->render('post/index.html.twig', [
             'controller_name' => 'PostController',
@@ -31,14 +33,13 @@ class PostController extends AbstractController
         
         $post = new Post();
 
-        $form = $this->createForm(ArticleFormType::class, $post);
+        $form = $this->createForm(PostType::class, $post);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             // $form->getData() holds the submitted values 
             // but the original post variables has also been updated
             // $post = $form->getData();
-
             // Get entity manager
             $em = $this->getDoctrine()->getManager();
             
@@ -63,6 +64,7 @@ class PostController extends AbstractController
             'form' => $form,
         ]); 
         
+
 
         // Automatic 
 
@@ -113,7 +115,7 @@ class PostController extends AbstractController
                 'No product found for id '.$id
             );
         }
-        $form = $this->createForm(ArticleFormType::class, $post);
+        $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -149,7 +151,7 @@ class PostController extends AbstractController
         $post = $postRepository
             ->find($id);
 
-        $form = $this->createForm(ArticleFormType::class, $post);
+        $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if (!$post) {

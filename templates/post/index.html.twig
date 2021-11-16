@@ -17,6 +17,7 @@
         {% if post.visible == true %}
 
             <li class="post">
+                <p>{{ post.date|date("d-m-Y") }}</p>
                 <b>Title: {{ post.title }}</b>
                 <p>Beschrijving: {{ post.description }}</p>
                 <p>
